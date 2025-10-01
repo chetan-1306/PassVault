@@ -4,22 +4,28 @@ PassVault is a secure and user-friendly password manager built using **React.js*
 
 ## Features ⭐
 
-- **Securely store passwords**  
-- **Toggle password visibility**  
-- **Copy password to clipboard**  
-- **Edit or delete saved passwords**  
-- **Fetch passwords from the backend**  
-- **MongoDB integration for data persistence**  
-- **React Toast Notifications**  
+- **🔐 Master Password Protection** - Secure access with encrypted master password
+- **🔒 AES-256-GCM Encryption** - Military-grade encryption for all stored passwords
+- **👤 User Authentication** - Secure login system with JWT tokens
+- **🔑 Securely store passwords** - All passwords encrypted before storage
+- **👁️ Toggle password visibility** - Show/hide passwords as needed
+- **📋 Copy password to clipboard** - Easy password copying functionality
+- **✏️ Edit or delete saved passwords** - Full CRUD operations
+- **🌐 MongoDB integration** - Secure data persistence with encrypted storage
+- **🔔 React Toast Notifications** - User-friendly feedback system
+- **🛡️ PBKDF2 Key Derivation** - Secure key generation from master password  
 
 ## Tech Stack 🖥️
 
 - **Frontend:** React.js, Tailwind CSS  
 - **Backend:** Express.js, MongoDB  
+- **Security:** Web Crypto API, JWT, bcrypt  
 - **Libraries Used:**  
   - `react-toastify` (for notifications)  
   - `uuid` (for unique ID generation)  
-  - `cors`, `dotenv`, `body-parser` (for API handling)  
+  - `cors`, `dotenv`, `body-parser` (for API handling)
+  - `bcryptjs` (for password hashing)
+  - `jsonwebtoken` (for authentication)  
 
 ## Installation ⚡
 
@@ -64,23 +70,30 @@ The application will be running at `http://localhost:3000/`. ✅
 
 | Method | Endpoint  | Description |
 |--------|----------|-------------|
-| GET    | `/`      | Fetch all saved passwords |
-| POST   | `/`      | Save a new password |
-| DELETE | `/`      | Delete a password |
+| POST   | `/api/auth/register` | User registration |
+| POST   | `/api/auth/login` | User authentication |
+| GET    | `/api/passwords` | Fetch all saved passwords |
+| POST   | `/api/passwords` | Save a new password |
+| PUT    | `/api/passwords/:id` | Update a password |
+| DELETE | `/api/passwords/:id` | Delete a password |
 
 ## Folder Structure 📂
 
 ```
 PassVault/               
-├── src/                   # React Frontend
-│   ├── components/        # UI Components 
-│   ├── App.jsx            # Main React app file
-│   ├── index.js           # Entry point
-│── Backend/               # Backend API
-│   ├── server.js          # Express server
+├── Client/                # React Frontend
+│   ├── src/               # Source code
+│   │   ├── components/    # UI Components (Login, Manager, etc.)
+│   │   ├── utils/         # Encryption utilities
+│   │   ├── App.jsx        # Main React app file
+│   │   └── main.jsx       # Entry point
+│   ├── package.json       # Frontend dependencies
+│   └── README.md          # Project Documentation
+├── Backend/               # Backend API
+│   ├── server.js          # Express server with auth routes
 │   ├── .env               # Environment variables
-│── package.json           # Dependencies
-│── README.md              # Project Documentation
+│   └── package.json       # Backend dependencies
+└── migrate-passwords.js   # Migration script for existing passwords
 ```
 
 ## Screenshots 📸
@@ -90,6 +103,24 @@ PassVault/
 ![alt text](<Screenshot 2025-03-26 at 12.10.02.png>)
 
 ![alt text](<Screenshot 2025-03-26 at 12.13.09.png>)
+
+## Security Features 🔐
+
+### Encryption
+- **AES-256-GCM**: Military-grade encryption algorithm for all stored passwords
+- **PBKDF2**: Password-based key derivation with 100,000 iterations
+- **Random Salt & IV**: Unique salt and initialization vector for each encryption
+- **Web Crypto API**: Native browser security implementation
+
+### Authentication
+- **JWT Tokens**: Secure session management
+- **bcrypt Hashing**: Master password hashing with salt
+- **Session Expiry**: Automatic token expiration for security
+
+### Data Protection
+- **Client-side Encryption**: Passwords encrypted before sending to server
+- **Zero-knowledge Architecture**: Server never sees plain text passwords
+- **Secure Storage**: Encrypted data stored in MongoDB
 
 ## Contributing 🤝
 
